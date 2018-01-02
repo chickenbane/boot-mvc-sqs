@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sqs-deployment
+  labels:
+    app: sqs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqs
+  template:
+    metadata:
+      labels:
+        app: sqs
+    spec:
+      containers:
+      - image: boot-mvc-sqs
+        name: boot-mvc-sqs
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
