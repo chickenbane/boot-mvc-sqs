@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package slalom.protobuf;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "metadata.proto";
+
+service ContactService {
+    rpc createContact (CreateContactRequest) returns (ContactResponse) {}
+    rpc getContact (GetContactRequest) returns (ContactResponse) {}
+    rpc getContactByPhone (GetContactByPhoneRequest) returns (ContactResponse) {}
+}
+
+message CreateContactRequest {
+    Metadata metadata  = 1;
+    string firstName = 2;
+    string lastName  = 3;
+    string email  = 4;
+    string phone = 5;
+}
+
+message GetContactRequest {
+    Metadata metadata = 1;
+    string id  = 2;
+}
+
+message GetContactByPhoneRequest {
+    Metadata metadata = 1;
+    string phone  = 2;
+}
+
+message ContactResponse {
+    Metadata metadata = 1;
+    string id = 2;
+    string firstName = 3;
+    string lastName = 4;
+    string email = 5;
+    string phone = 6;
+}

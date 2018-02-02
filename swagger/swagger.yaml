@@ -1,0 +1,288 @@
+---
+swagger: "2.0"
+info:
+  description: "Contact API, create and retrieve contacts"
+  version: "1.0.0"
+  title: "Contact API"
+  contact: {}
+paths:
+  /contact/{contactId}:
+    get:
+      operationId: "getContactById"
+      summary: "Get Contact by ID"
+      parameters:
+      - name: "X-CorrelationId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the correlation ID"
+      - name: "X-TenantId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the tenant ID"
+      - name: "contactId"
+        in: "path"
+        required: true
+        type: "string"
+        description: "the contact unique identifier"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Contact"
+  /contact/phone/{phone}:
+    get:
+      operationId: "getContactByPhone"
+      summary: "Get Contact by phone"
+      parameters:
+      - name: "phone"
+        in: "path"
+        required: true
+        type: "string"
+        description: "phone number for contact"
+      - name: "X-CorrelationId"
+        in: "header"
+        type: "string"
+        required: false
+        description: "the correlation ID"
+      - name: "X-TenantId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the tenant ID"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Contact"
+  /contact:
+    post:
+      operationId: "createContact"
+      summary: "New contact"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "X-CorrelationId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the correlation ID"
+      - name: "X-TenantId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the tenant ID"
+      - name: "body"
+        in: "body"
+        required: true
+        description: "contact creation body"
+        schema:
+          $ref: "#/definitions/Create Body"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Contact"
+        400:
+          description: "008-001-001:  Resource Not Found for Contact\n008-001-002:\
+            \  Malformed Payload\n008-001-006:  Missing Header\n008-001-007:  Underlying\
+            \ infrastructure encountered an error"
+          schema:
+            $ref: "#/definitions/Error Response"
+  /contact/grpc:
+    post:
+      operationId: "createContactGrpc"
+      summary: "New contact (gRPC)"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "X-CorrelationId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the correlation ID"
+      - name: "X-TenantId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the tenant ID"
+      - name: "body"
+        in: "body"
+        required: true
+        description: "contact creation body"
+        schema:
+          $ref: "#/definitions/Create Body"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Contact"
+        400:
+          description: "008-001-001:  Resource Not Found for Contact\n008-001-002:\
+            \  Malformed Payload\n008-001-006:  Missing Header\n008-001-007:  Underlying\
+            \ infrastructure encountered an error"
+          schema:
+            $ref: "#/definitions/Error Response"
+  /contact/kafka:
+    post:
+      operationId: "createContactKafka"
+      summary: "New contact (Kafka)"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "X-CorrelationId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the correlation ID"
+      - name: "X-TenantId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the tenant ID"
+      - name: "body"
+        in: "body"
+        required: true
+        description: "contact creation body"
+        schema:
+          $ref: "#/definitions/Create Body"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Contact"
+        400:
+          description: "008-001-001:  Resource Not Found for Contact\n008-001-002:\
+            \  Malformed Payload\n008-001-006:  Missing Header\n008-001-007:  Underlying\
+            \ infrastructure encountered an error"
+          schema:
+            $ref: "#/definitions/Error Response"
+  /contact/sqs:
+    post:
+      operationId: "createContactSqs"
+      summary: "New contact (SQS)"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "X-CorrelationId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the correlation ID"
+      - name: "X-TenantId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the tenant ID"
+      - name: "body"
+        in: "body"
+        required: true
+        description: "contact creation body"
+        schema:
+          $ref: "#/definitions/Create Body"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Contact"
+        400:
+          description: "008-001-001:  Resource Not Found for Contact\n008-001-002:\
+            \  Malformed Payload\n008-001-006:  Missing Header\n008-001-007:  Underlying\
+            \ infrastructure encountered an error"
+          schema:
+            $ref: "#/definitions/Error Response"
+  /contact/sns:
+    post:
+      operationId: "createContactSns"
+      summary: "New contact (SNS)"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "X-CorrelationId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the correlation ID"
+      - name: "X-TenantId"
+        in: "header"
+        required: false
+        type: "string"
+        description: "the tenant ID"
+      - name: "body"
+        in: "body"
+        required: true
+        description: "contact creation body"
+        schema:
+          $ref: "#/definitions/Create Body"
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Contact"
+        400:
+          description: "008-001-001:  Resource Not Found for Contact\n008-001-002:\
+            \  Malformed Payload\n008-001-006:  Missing Header\n008-001-007:  Underlying\
+            \ infrastructure encountered an error"
+          schema:
+            $ref: "#/definitions/Error Response"
+
+definitions:
+  Create Body:
+    type: "object"
+    required:
+    - "firstName"
+    - "lastName"
+    - "phone"
+    - "email"
+    properties:
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      phone:
+        type: "string"
+      email:
+        type: "string"
+  Contact:
+    type: "object"
+    required:
+    - "id"
+    - "firstName"
+    - "lastName"
+    - "phone"
+    - "email"
+    properties:
+      id:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      phone:
+        type: "string"
+      email:
+        type: "string"
+  Error Response:
+    type: "object"
+    required:
+    - "code"
+    - "msg"
+    - "stack"
+    properties:
+      code:
+        type: "string"
+      msg:
+        type: "string"
+      stack:
+        type: "string"

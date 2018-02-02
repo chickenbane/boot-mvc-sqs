@@ -1,0 +1,10 @@
+{
+  "groupId": "sbux.ucp",
+  "artifactId": "generated-swagger",
+  "artifactVersion": "1.0.0",
+  "library": "spring-boot",
+  "modelPackage": "sbux.ucp.rest.model",
+  "apiPackage": "sbux.ucp.rest.api",
+  "interfaceOnly": true,
+  "dateLibrary": "java8"
+}
